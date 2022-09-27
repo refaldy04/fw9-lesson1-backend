@@ -6,10 +6,18 @@ exports.createMessage = (data, cb) => {
   db.query(query, value, (err, res) => {
     if (res) {
       console.log(res.rows);
-      cb(err, res.rows);
+      cb(err, res.rows[0]);
     } else {
       console.log(err);
       cb(err);
     }
+  });
+};
+
+exports.getAllMessage = (cb) => {
+  // console.log(sortBy);
+  db.query(`SELECT * FROM message `, (err, res) => {
+    console.log(res.rows);
+    cb(err, res.rows);
   });
 };
