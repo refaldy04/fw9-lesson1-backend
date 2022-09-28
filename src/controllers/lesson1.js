@@ -8,7 +8,6 @@ exports.getAllMessage = async (req, res) => {
   lesson1Model.getAllMessage(limit, offset, (err, result) => {
     const pageInfo = {};
     lesson1Model.countAllMessage((err, totalData) => {
-      console.log(totalData);
       pageInfo.totalData = totalData;
       pageInfo.totalPage = Math.ceil(totalData / limit);
       pageInfo.currentPage = parseInt(page);
