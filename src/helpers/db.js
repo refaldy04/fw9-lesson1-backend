@@ -1,6 +1,6 @@
 const { Pool, Query } = require('pg');
 
-const { DATABASE_URL: connectionString } = process.env;
+const connectionString = 'postgresql://postgres:IMOTOstJAXsRTYDk@db.dogzrkoolruucdwdfkhj.supabase.co:5432/postgres';
 
 const db = new Pool({
   connectionString,

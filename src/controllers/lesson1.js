@@ -1,13 +1,13 @@
 const lesson1Model = require('../models/lesson1');
 
 exports.getAllMessage = async (req, res) => {
-  let { limit = 5, page = 1 } = req.query;
+  let { limit = 5, page = 1, search = '', sort = 'name' } = req.query;
 
   const offset = (page - 1) * limit;
 
-  lesson1Model.getAllMessage(limit, offset, (err, result) => {
+  lesson1Model.getAllMessage(limit, offset, search, sort, (err, result) => {
     const pageInfo = {};
-    lesson1Model.countAllMessage((err, totalData) => {
+    lesson1Model.countAllMessage(search, (err, totalData) => {
       pageInfo.totalData = totalData;
       pageInfo.totalPage = Math.ceil(totalData / limit);
       pageInfo.currentPage = parseInt(page);
