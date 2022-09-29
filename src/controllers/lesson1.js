@@ -1,6 +1,6 @@
 const lesson1Model = require('../models/lesson1');
 const { validationResult } = require('express-validator');
-const respone = require('../helpers/standardResponse');
+const response = require('../helpers/standardResponse');
 
 exports.getAllMessage = async (req, res) => {
   let { limit = 5, page = 1, search = '', sort = 'name' } = req.query;
