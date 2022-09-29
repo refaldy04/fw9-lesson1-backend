@@ -1,5 +1,6 @@
 const lesson1Model = require('../models/lesson1');
 const { validationResult } = require('express-validator');
+const respone = require('../helpers/standardResponse');
 
 exports.getAllMessage = async (req, res) => {
   let { limit = 5, page = 1, search = '', sort = 'name' } = req.query;
@@ -37,7 +38,7 @@ exports.createMessage = (req, res) => {
   const validation = validationResult(req);
   if (!validation.isEmpty()) {
     // is empty menandakan tidak ada error
-    return res.send(validation.array()[0]);
+    return response(res, 'Error occured', validation.array(), null, 400);
   }
   lesson1Model.createMessage(req.body, (err, result) => {
     // console.log(req.body);
