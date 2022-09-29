@@ -39,6 +39,17 @@ exports.createMessage = (req, res) => {
   });
 };
 
+exports.editMessage = (req, res) => {
+  const { id } = req.params;
+  lesson1Model.editMessage(id, req.body, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      return res.send(result[0]);
+    }
+  });
+};
+
 exports.deleteMessage = (req, res) => {
   const { id } = req.params;
   console.log(id);
