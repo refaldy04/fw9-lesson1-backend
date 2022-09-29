@@ -6,7 +6,7 @@ const messageValidation = [
   body('email').isEmail().withMessage('Email format invalid'),
   body('name').isLength({ min: 1, max: 50 }).withMessage('name length invalid'),
   body('phone_number').isMobilePhone(['id-ID']).withMessage('You are not from Indonesia'),
-  body('message').isLength({ min: 5, max: 250 }),
+  body('message').isLength({ min: 5, max: 250 }).withMessage('message to short'),
 ];
 
 lesson1.get('/', lesson1Controller.getAllMessage);
