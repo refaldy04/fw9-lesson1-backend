@@ -21,7 +21,6 @@ exports.countAllMessage = (keyword, cb) => {
 exports.getMessageById = (id, cb) => {
   db.query('SELECT * FROM message WHERE id=$1', [id], (err, res) => {
     if (res) {
-      console.log(res.rows);
       cb(err, res.rows);
     } else {
       console.log(err);
@@ -39,6 +38,19 @@ exports.createMessage = (data, cb) => {
     } else {
       console.log(err);
       cb(err);
+    }
+  });
+};
+
+exports.deleteMessage = (id, cb) => {
+  const query = 'DELETE FROM message WHERE id=$1 RETURNING *';
+  const value = [id];
+  db.query(query, value, (err, res) => {
+    // console.log(res);
+    if (res) {
+      cb(res.rows);
+    } else {
+      console.log(err);
     }
   });
 };

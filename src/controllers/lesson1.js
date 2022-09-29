@@ -25,7 +25,6 @@ exports.getAllMessageById = (req, res) => {
   console.log(id);
   lesson1Model.getMessageById(id, (err, result) => {
     if (result.length > 0) {
-      console.log('ini dari controllers');
       return res.send(result[0]);
     } else {
       return res.redirect('/404');
@@ -37,5 +36,13 @@ exports.createMessage = (req, res) => {
   lesson1Model.createMessage(req.body, (err, result) => {
     // console.log(req.body);
     return res.send(result);
+  });
+};
+
+exports.deleteMessage = (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  lesson1Model.deleteMessage(id, (result) => {
+    return res.send({ message: 'message deleted' });
   });
 };
