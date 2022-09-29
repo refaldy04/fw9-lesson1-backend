@@ -20,6 +20,19 @@ exports.getAllMessage = async (req, res) => {
   });
 };
 
+exports.getAllMessageById = (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  lesson1Model.getMessageById(id, (err, result) => {
+    if (result.length > 0) {
+      console.log('ini dari controllers');
+      return res.send(result[0]);
+    } else {
+      return res.redirect('/404');
+    }
+  });
+};
+
 exports.createMessage = (req, res) => {
   lesson1Model.createMessage(req.body, (err, result) => {
     // console.log(req.body);

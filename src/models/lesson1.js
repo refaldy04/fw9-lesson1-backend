@@ -18,6 +18,17 @@ exports.countAllMessage = (keyword, cb) => {
   });
 };
 
+exports.getMessageById = (id, cb) => {
+  db.query('SELECT * FROM message WHERE id=$1', [id], (err, res) => {
+    if (res) {
+      console.log(res.rows);
+      cb(err, res.rows);
+    } else {
+      console.log(err);
+    }
+  });
+};
+
 exports.createMessage = (data, cb) => {
   const query = 'INSERT INTO message(message, name, email, phone_number) VALUES($1, $2, $3, $4) RETURNING *';
   const value = [data.message, data.name, data.email, data.phone_number];
